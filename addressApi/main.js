@@ -1,22 +1,22 @@
 // はじめに各都道府県のidを指定する（API依存のもの）
 switch (prefecture) {
-    case 1:
+    case 01:
         return "北海道";
-    case 2:
+    case 02:
         return "青森県";
-    case 3:
+    case 03:
         return "岩手県";
-    case 4:
+    case 04:
         return "宮城県";
-    case 5:
+    case 05:
         return "秋田県";
-    case 6:
+    case 06:
         return "山形県";
-    case 7:
+    case 07:
         return "福島県";
-    case 8:
+    case 08:
         return "茨城県";
-    case 9:
+    case 09:
         return "栃木県";
     case 10:
         return "群馬県";
@@ -97,3 +97,4 @@ switch (prefecture) {
     default:
         return "";
 }
+
