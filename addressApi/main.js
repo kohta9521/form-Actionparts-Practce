@@ -1,4 +1,8 @@
-// 選択されたselectbox 内の要素を取得する関数を定義
+// 選択されたselectbox 内のidを取得する関数を定義
+function clickBtn() {
+    const pre = document.getElementById('prefecture').value;
+    document.getElementById('span3').textContent = pre;
+}
 
 // ↑ここまでが今日のタスクの理想
 
