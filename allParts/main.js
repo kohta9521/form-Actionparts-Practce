@@ -1,7 +1,7 @@
 let inputVal;
 
 const input = document.getElementById("input");
-input.addEventListener("change", (event) => {
+input.addEventListener("input", (event) => {
     inputVal = event.target.value;
     console.log(inputVal);
 });
@@ -45,22 +45,46 @@ function sedAddress(number) {
 // ====================================
 
 
+
 // 入力された値をリアルタイムで監視し変数へ代入
-
-// const address = document.getElementById("input");
-// address.addEventListener('change', handleChange); 
-
-// let addressText = address.textContent;
-
-// function handleChange(event) {
-//     sample = event.textContent;
-//     console.log(sample);
-// }
-// handleChange(address);
 // ====================================
 
 
 // 住所検索API
+let search = document.getElementById('search'); //  この部分のEventListenrは上記のinput  タグが更新されるたびに走らす
+input.addEventListener('click', ()=>{
+    
+    let api = 'https://zipcloud.ibsnet.co.jp/api/search?zipcode=';
+    let error = document.getElementById('error');
+    let input = document.getElementById('input');
+    let address1 = document.getElementById('address1');
+    let address2 = document.getElementById('address2');
+    let address3 = document.getElementById('address3');
+    let param = input.value.replace("-",""); //入力された郵便番号から「-」を削除
+    let url = api + param;
+    
+    fetchJsonp(url, {
+        timeout: 10000, //タイムアウト時間
+    })
+    .then((response)=>{
+        error.textContent = ''; //HTML側のエラーメッセージ初期化
+        return response.json();  
+    })
+    .then((data)=>{
+        if(data.status === 400){ //エラー時
+            error.textContent = data.message;
+        }else if(data.results === null){
+            error.textContent = '郵便番号から住所が見つかりませんでした。';
+        } else {
+            address1.value = data.results[0].address1;
+            address2.value = data.results[0].address2;
+            address3.value = data.results[0].address3;
+        }
+    })
+    .catch((ex)=>{ //例外処理
+        console.log(ex);
+    });
+}, false);
     // １）選択された都道府県のIDに応じで市区町村データをとってくる
     //  2）都道府県が選択されたことによりIDを認識　市区町村データをとってくる
 // ====================================
