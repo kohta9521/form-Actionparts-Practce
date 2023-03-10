@@ -1,15 +1,38 @@
+let inputVal;
+
+const input = document.getElementById("input");
+input.addEventListener("change", (event) => {
+    inputVal = event.target.value;
+    console.log(inputVal);
+});
+
+console.log(inputVal);
+
+
+input.addEventListener("input", (event) => {
+    const value = event.target.value;
+    if (value.length !== 7) {
+        console.log("7文字で入力してください");
+    } else {
+        console.log("OK!!!")
+    }
+});
+
+
+
+
 // 入力された値をリアルタイムで監視し変数へ代入
 
-const address = document.getElementById("input");
-address.addEventListener('change', handleChange); 
+// const address = document.getElementById("input");
+// address.addEventListener('change', handleChange); 
 
-let addressText = address.textContent;
+// let addressText = address.textContent;
 
-function handleChange(event) {
-    sample = event.textContent;
-    console.log(sample);
-}
-handleChange(address);
+// function handleChange(event) {
+//     sample = event.textContent;
+//     console.log(sample);
+// }
+// handleChange(address);
 // ====================================
 
 // 入力された値が全角か半角かを判定   →  全角だった場合半角へ変換
