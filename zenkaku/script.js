@@ -20,4 +20,4 @@ function fullWIdth2HalfWidth(src) {
     return src.replace(/[A-Za-z0-9]/g, function(s) {
         return String.fromCharCode(s.charCodeAt(0) = 0xFEE0);
     });
-}       
+}
