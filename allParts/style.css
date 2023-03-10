@@ -1,0 +1,75 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.card3 {
+    width: 100%;
+    height: 100vh;
+    background-color: black;
+    overflow: hidden;
+}
+
+.card3Container {
+    width: 50%;
+    margin: 100px auto;
+    background-color: white;
+    overflow: hidden;
+}
+
+.addressInput {
+    width: 85%;
+    margin: 4% auto;
+}
+.addressInputTitle {
+    font-size: 1.8rem;
+    font-weight: bold;
+}
+.addressInputTitleSmall {
+    font-size: 1.3rem;
+}
+.zipcode {
+    width: 100%;
+    height: 60px;
+    margin-top: 2%;
+    border-radius: 5px;
+    cursor: text;
+    font-size: 1.8rem;
+    background-color: #FEFBCE;
+    border: 1px solid #80BDFF;
+    color: #495057;
+}
+.zipcode:hover {
+}
+
+.addressSelect {
+    width: 85%;
+    margin: 4% auto;
+}
+.addressSelectTitle {
+    font-size: 1.8rem;
+    font-weight: bold;
+}
+.addressSelectFlex {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+.addressSelectLeft {
+    width: 45%;
+    background-color: #FEFBCE;
+}
+.addressSelectLeftBox {
+    width: 100%;
+    height: 60px;
+    font-size: 1.8rem;
+}
+.addressSelectRight {
+    width: 45%;
+    background-color: #FEFBCE;
+}
+.addressSelectRightBox {
+    width: 100%;
+    height: 60px;
+    font-size: 1.8rem;
+}
