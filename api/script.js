@@ -1,4 +1,6 @@
 let search = document.getElementById('input');
+let last = 00;
+
 search.addEventListener('input', ()=>{
     
     let api = 'https://zipcloud.ibsnet.co.jp/api/search?zipcode=';
@@ -25,11 +27,39 @@ search.addEventListener('input', ()=>{
         } else {
             address1.value = data.results[0].address1;
             address2.value = data.results[0].address2;
-            console.log(data.results[0].address1)
+            console.log(data.results[0].prefcode)
             console.log(data.results[0].address2)
+            last = data.results[0].prefcode
+            console.log(last)
+            // ここからselectbox の選択をする記述
+            
         }
     })
     .catch((ex)=>{ 
         console.log(ex);
     });
+
+
+    // 郵便番号未入力 都道府県選択の場合
+    // fetchJsonp(url, {
+    //     timeout: 10000, 
+    // })
+    // .then(response => response.json())
+    // .then(data => {
+    //     const select = document.getElementById('address2');
+
+    //     data.forEach(item => {
+    //         const option = document.createElement('option');
+    //         option.value = data.results[0]
+    //         option.text = data.reslut[0];
+    //         select.appendChild(option)
+    //     });
+    // });
+
 }, false);
+
+console.log(last);
+
+// const userInputValue = 'option2';
+// const selectedIndex = Array.from(select.options).findIndex(option => option.value === userInputValue);
+// select.selectedIndex = selectedIndex;
