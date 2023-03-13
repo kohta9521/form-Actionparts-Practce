@@ -40,16 +40,11 @@ search.addEventListener('input', ()=>{
                 }
             })
 
-            // 選択された値を取得しその値によって市区町村を検索する
+            // 選択された値を取得しその値によって市区町村を検索する 問題点選択しないと発火しない
 
             select.addEventListener('input', (event) => {
                 const selectValue = event.target.value;
-
-                if (selectValue === option.value) {
-                    // ここからAPIを叩く
-                } else {
-                    console.log('cant use address')
-                }
+                console.log("this is my code" + selectValue);
             })
         }
     })
