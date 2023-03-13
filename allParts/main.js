@@ -19,7 +19,6 @@ input.addEventListener("input", (event) => {
         console.log(lastNumber);
     }
 });
-// console.log(inputVal);
 
 // 入力された値が全角か半角かを判定   →  全角だった場合半角へ変換
 function sedAddress(number) {
