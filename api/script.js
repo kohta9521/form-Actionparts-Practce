@@ -18,17 +18,18 @@ search.addEventListener('input', ()=>{
         return response.json();  
     })
     .then((data)=>{
-        if(data.status === 400){ //エラー時
+        if(data.status === 400){ 
             error.textContent = data.message;
         }else if(data.results === null){
             error.textContent = '郵便番号から住所が見つかりませんでした。';
         } else {
             address1.value = data.results[0].address1;
             address2.value = data.results[0].address2;
-            address3.value = data.results[0].address3;
+            console.log(data.results[0].address1)
+            console.log(data.results[0].address2)
         }
     })
-    .catch((ex)=>{ //例外処理
+    .catch((ex)=>{ 
         console.log(ex);
     });
 }, false);
