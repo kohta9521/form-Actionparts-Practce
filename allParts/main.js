@@ -1,4 +1,5 @@
 let inputVal;
+let lastNumber;
 
 const input = document.getElementById("input");
 input.addEventListener("input", (event) => {
@@ -14,6 +15,8 @@ input.addEventListener("input", (event) => {
     } else {
         console.log("OK!!!")
         sedAddress(inputVal);
+        lastNumber = inputVal;
+        console.log(lastNumber);
     }
 });
 // console.log(inputVal);
@@ -44,48 +47,11 @@ function sedAddress(number) {
 
 // ====================================
 
-
-
-// 入力された値をリアルタイムで監視し変数へ代入
-// ====================================
-
-
 // 住所検索API
-let search = document.getElementById('search'); //  この部分のEventListenrは上記のinput  タグが更新されるたびに走らす
-input.addEventListener('click', ()=>{
-    
-    let api = 'https://zipcloud.ibsnet.co.jp/api/search?zipcode=';
-    let error = document.getElementById('error');
-    let input = document.getElementById('input');
-    let address1 = document.getElementById('address1');
-    let address2 = document.getElementById('address2');
-    let address3 = document.getElementById('address3');
-    let param = input.value.replace("-",""); //入力された郵便番号から「-」を削除
-    let url = api + param;
-    
-    fetchJsonp(url, {
-        timeout: 10000, //タイムアウト時間
-    })
-    .then((response)=>{
-        error.textContent = ''; //HTML側のエラーメッセージ初期化
-        return response.json();  
-    })
-    .then((data)=>{
-        if(data.status === 400){ //エラー時
-            error.textContent = data.message;
-        }else if(data.results === null){
-            error.textContent = '郵便番号から住所が見つかりませんでした。';
-        } else {
-            address1.value = data.results[0].address1;
-            address2.value = data.results[0].address2;
-            address3.value = data.results[0].address3;
-        }
-    })
-    .catch((ex)=>{ //例外処理
-        console.log(ex);
-    });
-}, false);
-    // １）選択された都道府県のIDに応じで市区町村データをとってくる
-    //  2）都道府県が選択されたことによりIDを認識　市区町村データをとってくる
+    // はじめに条件分岐で当てはまるか否かの判断が必要
+    //  1) lasNumberに格納されている住所を元にAPIを叩く
+    //  2)叩いた住所を元にcheckbox の中身を変更する
+    //  3)変更した後の値を何かしらに格納する
+    //  4)変更後の値を元に次の転職希望エリアの都道府県を選択させる
 // ====================================
 
