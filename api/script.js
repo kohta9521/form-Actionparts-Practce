@@ -8,15 +8,14 @@ search.addEventListener('input', ()=>{
     let input = document.getElementById('input');
     let address1 = document.getElementById('address1');
     let address2 = document.getElementById('address2');
-    // let address3 = document.getElementById('address3');
-    let param = input.value.replace("-",""); //入力された郵便番号から「-」を削除
+    let param = input.value.replace("-",""); 
     let url = api + param;
     
     fetchJsonp(url, {
-        timeout: 10000, //タイムアウト時間
+        timeout: 10000, 
     })
     .then((response)=>{
-        error.textContent = ''; //HTML側のエラーメッセージ初期化
+        error.textContent = ''; 
         return response.json();  
     })
     .then((data)=>{
@@ -31,8 +30,27 @@ search.addEventListener('input', ()=>{
             console.log(data.results[0].address2)
             last = data.results[0].prefcode
             console.log(last)
+
             // ここからselectbox の選択をする記述
-            
+
+            const select = document.getElementById('address1');
+            Array.from(select.options).forEach(option => {
+                if(option.value === last) {
+                    option.selected = true;
+                }
+            })
+
+            // 選択された値を取得しその値によって市区町村を検索する
+
+            select.addEventListener('input', (event) => {
+                const selectValue = event.target.value;
+
+                if (selectValue === option.value) {
+                    // ここからAPIを叩く
+                } else {
+                    console.log('cant use address')
+                }
+            })
         }
     })
     .catch((ex)=>{ 
@@ -40,26 +58,4 @@ search.addEventListener('input', ()=>{
     });
 
 
-    // 郵便番号未入力 都道府県選択の場合
-    // fetchJsonp(url, {
-    //     timeout: 10000, 
-    // })
-    // .then(response => response.json())
-    // .then(data => {
-    //     const select = document.getElementById('address2');
-
-    //     data.forEach(item => {
-    //         const option = document.createElement('option');
-    //         option.value = data.results[0]
-    //         option.text = data.reslut[0];
-    //         select.appendChild(option)
-    //     });
-    // });
-
 }, false);
-
-console.log(last);
-
-// const userInputValue = 'option2';
-// const selectedIndex = Array.from(select.options).findIndex(option => option.value === userInputValue);
-// select.selectedIndex = selectedIndex;
