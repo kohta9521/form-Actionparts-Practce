@@ -1,5 +1,5 @@
 let search = document.getElementById('input');
-search.addEventListener('input', (event) => {
+search.addEventListener('input', () => {
     let api = 'https://zipcloud.ibsnet.co.jp/api/search?zipcode=';
     let error = document.getElementById('error');
     let input = document.getElementById('input');

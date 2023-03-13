@@ -1,12 +1,12 @@
-let search = document.getElementById('search');
-search.addEventListener('click', ()=>{
+let search = document.getElementById('input');
+search.addEventListener('input', ()=>{
     
     let api = 'https://zipcloud.ibsnet.co.jp/api/search?zipcode=';
     let error = document.getElementById('error');
     let input = document.getElementById('input');
     let address1 = document.getElementById('address1');
     let address2 = document.getElementById('address2');
-    let address3 = document.getElementById('address3');
+    // let address3 = document.getElementById('address3');
     let param = input.value.replace("-",""); //入力された郵便番号から「-」を削除
     let url = api + param;
     
