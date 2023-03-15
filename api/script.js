@@ -31,6 +31,9 @@ search.addEventListener('input', ()=>{
             console.log(data.results[0].address2)
             last = data.results[0].prefcode
             console.log(last)
+            console.log(last)
+            console.log(last)
+            console.log(last)
 
             // ここからselectbox の選択をする記述
 
@@ -47,6 +50,21 @@ search.addEventListener('input', ()=>{
                 const selectedValue = select.options[selectElement.selectIndex].value;
                 console.log(selectedValue);
             })
+
+            // 郵便番号から市区町まで検索できた場合の処理
+            const cityArray = [];
+                // 検索できた市区町村をHTMLのoptionとして差し込み／出力する処理
+                // =================================================
+
+                // 郵便番号検索のvalueと比較し等しいものを選択する処理
+                const select2 = document.getElementById('address2');
+                Array.from(select2.options).forEach(option => {
+                    if(option.value === last) {
+                        option.selected = true;
+                    }
+                })
+                // =========================================
+            // =================================
 
             
 
