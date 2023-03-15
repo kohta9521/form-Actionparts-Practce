@@ -26,14 +26,9 @@ search.addEventListener('input', ()=>{
             error.textContent = '郵便番号から住所が見つかりませんでした。';
         } else {
             address1.value = data.results[0].address1;
-            address2.value = data.results[0].address2;
-            console.log(data.results[0].prefcode)
+            // address2.value = data.results[0].address2;
             console.log(data.results[0].address2)
             last = data.results[0].prefcode
-            console.log(last)
-            console.log(last)
-            console.log(last)
-            console.log(last)
 
             // ここからselectbox の選択をする記述
 
@@ -53,16 +48,28 @@ search.addEventListener('input', ()=>{
 
             // 郵便番号から市区町まで検索できた場合の処理
             const cityArray = [];
+
+            // 都道府県を指定
+            const prefectureCode = last;
+            console.log(prefectureCode);
+
+            fetch(`https://apis.postcode-jp.com/api/v3/prefectures/${prefectureCode}/cities`)
+                .then(response => response.json())
+                .then(data => {
+                    const city = data.data.map(city => city.city)
+                    console.log(city); 
+                })
+                .catch(error => console.error(error));
                 // 検索できた市区町村をHTMLのoptionとして差し込み／出力する処理
                 // =================================================
 
                 // 郵便番号検索のvalueと比較し等しいものを選択する処理
-                const select2 = document.getElementById('address2');
-                Array.from(select2.options).forEach(option => {
-                    if(option.value === last) {
-                        option.selected = true;
-                    }
-                })
+                // const select2 = document.getElementById('address2');
+                // Array.from(select2.options).forEach(option => {
+                //     if(option.value === last) {
+                //         option.selected = true;
+                //     }
+                // })
                 // =========================================
             // =================================
 
