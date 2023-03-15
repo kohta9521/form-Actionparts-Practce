@@ -10,6 +10,7 @@ search.addEventListener('input', ()=>{
     let address2 = document.getElementById('address2');
     let param = input.value.replace("-",""); 
     let url = api + param;
+
     
     fetchJsonp(url, {
         timeout: 10000, 
@@ -40,12 +41,15 @@ search.addEventListener('input', ()=>{
                 }
             })
 
-            // 選択された値を取得しその値によって市区町村を検索する 問題点選択しないと発火しない
-
+            // 選択された値を取得しその値によって市区町村を検索する 問題点 選択しないと発火しない
+            
             select.addEventListener('input', (event) => {
-                const selectValue = event.target.value;
-                console.log("this is my code" + selectValue);
+                const selectedValue = select.options[selectElement.selectIndex].value;
+                console.log(selectedValue);
             })
+
+            
+
         }
     })
     .catch((ex)=>{ 
