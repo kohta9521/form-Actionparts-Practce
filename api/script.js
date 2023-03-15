@@ -29,6 +29,8 @@ search.addEventListener('change', ()=>{
             address1.value = data.results[0].address1;
             // address2.value = data.results[0].address2;
             console.log(data.results[0].address2)
+            let name = data.results[0].address2;
+            console.log(name)
             last = data.results[0].prefcode
 
             // ここからselectbox の選択をする記述
@@ -63,8 +65,18 @@ search.addEventListener('change', ()=>{
                         optionElement.value = option;
                         optionElement.textContent = option;
                         address2.appendChild(optionElement);
+
+                        const cityName = city.find(item => item == name)
+                        console.log(cityName)
+
+                        if (cityName) {
+                            // optionタグが見つかった場合、select要素の選択状態を変更する
+                            address2.selected = true;
+                        }
+
                     });
 
+                    
                     // Array.from(address2.options).forEach(option => {
                     //     if(option.value === last) {
                     //         option.selected = true;
