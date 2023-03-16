@@ -3,9 +3,35 @@ let last = 00;
 
 // 選択された値を取得しその値によって市区町村を検索する 問題点 選択しないと発火しない
             
-address1.addEventListener('change', function() {
+address1.addEventListener('input', function() {
     const last = address1.options[address1.selectedIndex];
-    console.log(last);
+    console.log(last.value);
+    let pickValue = last.value;
+    console.log(pickValue);
+
+    fetch(`https://apis.postcode-jp.com/api/v3/prefectures/${pickValue}/cities`)
+        .then(response => response.json())
+        .then(data => {
+            const city = data.data.map(city => city.city)
+            console.log(city)
+
+            city.forEach((option) => {
+                const optionElement = document.createElement('option');
+                optionElement.value = option;
+                optionElement.textContent = option;
+                address2.appendChild(optionElement);
+
+                const cityName = city.find(item => item == name)
+
+                const option2 = Array.from(address2.options).find(option => option.value === cityName);
+
+                if (option2) {
+                    // optionタグが見つかった場合、select要素の選択状態を変更する
+                    option2.selected = true;
+                }
+            });
+        })
+        .catch(error => console.error(error));
 })
 
 search.addEventListener('change', ()=>{
@@ -77,14 +103,7 @@ search.addEventListener('change', ()=>{
                 })
                 .catch(error => console.error(error));
 
-             // 選択された値を取得しその値によって市区町村を検索する 問題点 選択しないと発火しない
-            
-            address1.addEventListener('change', () => {
-                const selectOptionValue = address1.value;
-                console.log(selectOptionValue.value)
 
-                // APIを叩く記述
-            })
         }
     })
     .catch((ex)=>{ 
