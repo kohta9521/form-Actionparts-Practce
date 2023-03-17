@@ -10,3 +10,8 @@ a {
 li {
     list-style: none;
 }
+.title {
+    margin: 0 auto;
+    text-align: center;
+    font-size: 40px;
+}
